@@ -28,7 +28,7 @@ class Lesson2 {
      */
     static String initials(String fullName) {
         String[] parts = fullName.split(" ");
-        return parts[0].substring(0, 1).toUpperCase() + "." + parts[1].substring(0, 1).toUpperCase() + "." + parts[2].substring(0, 1).toUpperCase() + ".";
+        return (parts[0].charAt(0) + "." + parts[1].charAt(0) + "." + parts[2].charAt(0) + ".").toUpperCase();
     }
 
 }
