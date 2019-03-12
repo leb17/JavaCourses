@@ -38,7 +38,7 @@ public class Lesson3_Operators {
      */
     public static boolean task2(int i) {
         int k = --i;
-        k = k > 100 || k < 30 ? k + 1000 : ((k > 0 && k % 2 == 0) ? k - 1000 : k);
+        k = k > 100 || k < 30 ? k + 1000 : (k % 2 == 0 ? k - 1000 : k);
         return k >= 0;
     }
 
