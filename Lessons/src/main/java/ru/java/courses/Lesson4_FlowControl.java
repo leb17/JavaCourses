@@ -17,7 +17,16 @@ public class Lesson4_FlowControl {
      * @return самую длинную строку из полученного массива
      */
     public static String task1(String[] strings) {
-        return null;
+        if (strings.length != 0) {
+            String max = strings[0];
+            for (int i=1; i<strings.length;i++) {
+                if (strings[i].length() > max.length()) {
+                    max = strings[i];
+                }
+            }
+            return max;
+        } else
+            return "";
     }
 
     /**
