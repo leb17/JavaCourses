@@ -49,6 +49,32 @@ public class Lesson4_FlowControl {
      * @return целочисленный результат выполнения операции
      */
     public static int task2(int i, int k, char operation) {
-       return 0;
+        int res = 0;
+        switch (operation) {
+            case '+':
+                res = i + k;
+                break;
+            case '-':
+                res = i - k;
+                break;
+            case '*':
+                res = i * k;
+                break;
+            case '/':
+                if (k == 0) {
+                    res = 0;
+                } else {
+                    res = i / k;
+                }
+                break;
+            case '%':
+                if (k == 0) {
+                    res = 0;
+                } else {
+                    res = i % k;
+                }
+                break;
+        }
+       return res;
     }
 }
