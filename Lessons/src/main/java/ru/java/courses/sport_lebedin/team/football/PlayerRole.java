@@ -16,7 +16,7 @@ public enum PlayerRole {
         return name;
     }
 
-    public void setRole(String role) {
+    /*public void setRole(String role) {
         this.name = role;
-    }
+    }*/
 }

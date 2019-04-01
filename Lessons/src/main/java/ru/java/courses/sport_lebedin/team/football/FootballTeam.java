@@ -1,10 +1,11 @@
 package ru.java.courses.sport_lebedin.team.football;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class FootballTeam {
 
-    private ArrayList<FootballPlayer> players = new ArrayList<FootballPlayer>();
+    private ArrayList<FootballPlayer> players = new ArrayList<>();
 
     private String name;
 
@@ -62,19 +63,19 @@ public class FootballTeam {
             players.add(player);
     }
 
-    public void addPlayers(ArrayList<FootballPlayer> newplayers) {
-        if (this.players.size() + players.size() > MAX_PLAYERS_COUNT) {
+    public void addPlayers(FootballPlayer...newplayers) {
+        if (this.players.size() + newplayers.length > MAX_PLAYERS_COUNT) {
             throw new IllegalArgumentException("Команда уже укомплектована");
         } else
-            for (FootballPlayer player : newplayers) {
+            /*for (FootballPlayer player : newplayers) {
                 this.players.add(player);
-            }
+            }*/
+            Collections.addAll(this.players, newplayers);
     }
 
     public void removePlayer(FootballPlayer player) {
         players.remove(player);
     }
-
 
     public int getScore() {
         int sum = 0;
