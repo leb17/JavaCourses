@@ -1,4 +1,4 @@
-package ru.java.courses.sport.team.football;
+package ru.java.courses.sport_lebedin.team.football;
 
 public class ScoringPlayer {
 

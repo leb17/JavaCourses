@@ -8,16 +8,23 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.lang.reflect.Method;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import ru.java.courses.sport.Athlete;
-import ru.java.courses.sport.Coach;
-import ru.java.courses.sport.team.Team;
-import ru.java.courses.sport.team.football.FootballPlayer;
-import ru.java.courses.sport.team.football.FootballTeam;
-import ru.java.courses.sport.team.football.PlayerRole;
+//import Athlete;
+//import ru.java.courses.sport.Coach;
+//import ru.java.courses.sport.team.Team;
+//import FootballPlayer;
+//import FootballTeam;
+//import PlayerRole;
+
+import ru.java.courses.sport_lebedin.team.Athlete;
+import ru.java.courses.sport_lebedin.team.football.Coach;
+import ru.java.courses.sport_lebedin.team.football.FootballPlayer;
+import ru.java.courses.sport_lebedin.team.football.FootballTeam;
+import ru.java.courses.sport_lebedin.team.football.PlayerRole;
+
 
 public class Lesson5to8_OOPTest {
 
-    private static Team team;
+    private static FootballTeam team;
 
     @BeforeAll
     public static void setup() {

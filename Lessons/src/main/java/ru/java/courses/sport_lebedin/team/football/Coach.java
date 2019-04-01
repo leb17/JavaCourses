@@ -1,4 +1,4 @@
-package ru.java.courses.sport.team.football;
+package ru.java.courses.sport_lebedin.team.football;
 
 public class Coach {
 
@@ -7,6 +7,9 @@ public class Coach {
     private int experience;
 
     public Coach(String name) {
+        if (name == null || name.isEmpty() ) {
+            throw new IllegalArgumentException("Нужно задать имя");
+        } else
         this.name = name;
     }
 
@@ -20,6 +23,9 @@ public class Coach {
     }
 
     public void setName(String name) {
+        if (name == null || name.isEmpty() ) {
+            throw new IllegalArgumentException("Нужно задать имя");
+        } else
         this.name = name;
     }
 
