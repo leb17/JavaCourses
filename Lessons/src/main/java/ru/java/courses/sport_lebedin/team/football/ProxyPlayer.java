@@ -24,12 +24,10 @@ public class ProxyPlayer extends Athlete implements ScoringPlayer{
     }
 
     @Override
-    public void score() { //в случае если прокси-игрок окажется запасным, то создаётся обычный активный
-        if (isActive()) {
-            goals++;
-        } else {
+    public void score() { //в случае если игрок окажется вратарём, то создаётся другой
+        if (player.getRole() == PlayerRole.GOALKEEPER) {
             player = new FootballPlayer("",role);
-            goals++;
         }
+            goals++;
     }
 }
