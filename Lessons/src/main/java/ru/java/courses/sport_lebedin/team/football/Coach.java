@@ -7,10 +7,7 @@ public class Coach {
     private int experience;
 
     public Coach(String name) {
-        if (name == null || name.isEmpty() ) {
-            throw new IllegalArgumentException("Нужно задать имя");
-        } else
-        this.name = name;
+        setName(name);
     }
 
     public Coach(String name, int experience) {

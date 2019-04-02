@@ -15,10 +15,7 @@ public class FootballTeam {
 
 
     public FootballTeam(String name) {
-        if (name == null || name.isEmpty() ) {
-            throw new IllegalArgumentException("Нужно задать имя");
-        } else
-        this.name = name;
+        setName(name);
     }
 
     public String getName() {
@@ -57,14 +54,17 @@ public class FootballTeam {
     }
 
     public void addPlayer(FootballPlayer player) {
-        if (players.size() >= getMaxPlayersCount()) {
+        if (player == null) {
+            throw new IllegalArgumentException("Игрок не выбран");
+        } else if (players.size() >= getMaxPlayersCount()) {
             throw new IllegalArgumentException("Команда уже укомплектована");
         } else
             players.add(player);
     }
 
     public void addPlayers(FootballPlayer...newplayers) {
-        if (this.players.size() + newplayers.length > getMaxPlayersCount()) {
+
+        if (players.size() + newplayers.length > getMaxPlayersCount()) {
             throw new IllegalArgumentException("Команда уже укомплектована");
         } else
             /*for (FootballPlayer player : newplayers) {
@@ -74,7 +74,10 @@ public class FootballTeam {
     }
 
     public void removePlayer(FootballPlayer player) {
-        players.remove(player);
+        if (player == null) {
+            throw new IllegalArgumentException("Игрок не выбран");
+        } else
+            players.remove(player);
     }
 
     public int getScore() {

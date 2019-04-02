@@ -6,10 +6,7 @@ public class Athlete {
     protected int goals;
 
     public Athlete(String name) {
-        if (name == null || name.isEmpty() ) {
-            throw new IllegalArgumentException("Нужно задать имя");
-        }
-        this.name = name;
+        setName(name);
     }
 
     public String getName() {

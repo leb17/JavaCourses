@@ -10,10 +10,7 @@ public class FootballPlayer extends Athlete implements ScoringPlayer {
 
     public FootballPlayer(String name, PlayerRole role) {
         super(name);
-        if (role == null) {
-            throw new IllegalArgumentException("");
-        }
-        this.role = role;
+        setRole(role);
         this.active = true;
     }
 
@@ -42,5 +39,10 @@ public class FootballPlayer extends Athlete implements ScoringPlayer {
             goals++;
         } else
             throw new IllegalArgumentException("Запасной не может забить гол");
+    }
+
+    @Override
+    public int getScore() {
+        return goals;
     }
 }
