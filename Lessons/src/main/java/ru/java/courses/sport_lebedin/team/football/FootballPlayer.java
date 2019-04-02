@@ -2,7 +2,7 @@ package ru.java.courses.sport_lebedin.team.football;
 
 import ru.java.courses.sport_lebedin.team.Athlete;
 
-public class FootballPlayer extends Athlete {
+public class FootballPlayer extends Athlete implements ScoringPlayer {
 
     private PlayerRole role;
 
@@ -36,6 +36,7 @@ public class FootballPlayer extends Athlete {
         this.role = role;
     }
 
+    @Override
     public void score() {
         if (isActive()) {
             goals++;

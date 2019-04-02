@@ -1,12 +1,8 @@
 package ru.java.courses.sport_lebedin.team.football;
 
-public class ScoringPlayer {
+public interface ScoringPlayer {
 
-    private String name;
+    void score();
 
-    private int goals;
-
-    private PlayerRole role;
-
-
+    int getScore();
 }

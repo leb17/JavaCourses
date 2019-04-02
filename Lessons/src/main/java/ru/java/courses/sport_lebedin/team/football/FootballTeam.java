@@ -57,14 +57,14 @@ public class FootballTeam {
     }
 
     public void addPlayer(FootballPlayer player) {
-        if (players.size() >= MAX_PLAYERS_COUNT) {
+        if (players.size() >= getMaxPlayersCount()) {
             throw new IllegalArgumentException("Команда уже укомплектована");
         } else
             players.add(player);
     }
 
     public void addPlayers(FootballPlayer...newplayers) {
-        if (this.players.size() + newplayers.length > MAX_PLAYERS_COUNT) {
+        if (this.players.size() + newplayers.length > getMaxPlayersCount()) {
             throw new IllegalArgumentException("Команда уже укомплектована");
         } else
             /*for (FootballPlayer player : newplayers) {
