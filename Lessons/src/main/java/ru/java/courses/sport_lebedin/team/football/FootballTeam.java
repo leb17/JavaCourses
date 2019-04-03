@@ -63,7 +63,11 @@ public class FootballTeam {
     }
 
     public void addPlayers(FootballPlayer...newplayers) {
-
+        for (FootballPlayer f: newplayers) {
+            if (f == null) {
+                throw new IllegalArgumentException("Один из игроков не выбран");
+            }
+        }
         if (players.size() + newplayers.length > getMaxPlayersCount()) {
             throw new IllegalArgumentException("Команда уже укомплектована");
         } else
@@ -88,4 +92,33 @@ public class FootballTeam {
         return sum;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        FootballTeam that = (FootballTeam) o;
+
+        if (players != null ? !players.equals(that.players) : that.players != null) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        return coach != null ? coach.equals(that.coach) : that.coach == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = players != null ? players.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (coach != null ? coach.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "FootballTeam{" +
+                "players=" + players +
+                ", name='" + name + '\'' +
+                ", coach=" + coach +
+                '}';
+    }
 }

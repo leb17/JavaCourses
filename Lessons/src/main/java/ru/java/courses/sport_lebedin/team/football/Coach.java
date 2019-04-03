@@ -11,7 +11,7 @@ public class Coach {
     }
 
     public Coach(String name, int experience) {
-        this.name = name;
+        setName(name);
         this.experience = experience;
     }
 
@@ -32,5 +32,32 @@ public class Coach {
 
     public void setExperience(int experience) {
         this.experience = experience;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Coach coach = (Coach) o;
+
+        if (experience != coach.experience) return false;
+        return name != null ? name.equals(coach.name) : coach.name == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + experience;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Coach{" +
+                "name='" + name + '\'' +
+                ", experience=" + experience +
+                '}';
     }
 }

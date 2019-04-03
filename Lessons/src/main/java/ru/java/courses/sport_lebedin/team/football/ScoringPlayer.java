@@ -5,4 +5,5 @@ public interface ScoringPlayer {
     void score();
 
     int getScore();
+
 }

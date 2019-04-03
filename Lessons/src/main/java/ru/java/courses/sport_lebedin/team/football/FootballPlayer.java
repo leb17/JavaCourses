@@ -6,20 +6,12 @@ public class FootballPlayer extends Athlete implements ScoringPlayer {
 
     private PlayerRole role;
 
-    private boolean active;
+    //private boolean active;
 
     public FootballPlayer(String name, PlayerRole role) {
         super(name);
         setRole(role);
         this.active = true;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
     public PlayerRole getRole() {
@@ -44,5 +36,30 @@ public class FootballPlayer extends Athlete implements ScoringPlayer {
     @Override
     public int getScore() {
         return goals;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        FootballPlayer that = (FootballPlayer) o;
+
+        return role == that.role;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return role != null ? role.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "FootballPlayer{" +
+                "role=" + role +
+                ", goals=" + goals +
+                ", active=" + active +
+                '}';
     }
 }
