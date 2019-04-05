@@ -1,40 +1,18 @@
 package ru.java.courses.sport_lebedin.team.football;
 
+import ru.java.courses.sport_lebedin.team.Team;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class FootballTeam {
+public class FootballTeam extends Team {
 
     private ArrayList<FootballPlayer> players = new ArrayList<>();
-
-    private String name;
-
-    private Coach coach;
 
     private static final int MAX_PLAYERS_COUNT = 20;
 
 
     public FootballTeam(String name) {
-        setName(name);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        if (name == null || name.isEmpty() ) {
-            throw new IllegalArgumentException("Нужно задать имя");
-        } else
-        this.name = name;
-    }
-
-    public Coach getCoach() {
-        return coach;
-    }
-
-    public void setCoach(Coach coach) {
-        this.coach = coach;
+        super(name);
     }
 
     public ArrayList<FootballPlayer> getPlayers() {
@@ -86,7 +64,7 @@ public class FootballTeam {
 
     public int getScore() {
         int sum = 0;
-        for (FootballPlayer player : players) {
+        for (ScoringPlayer player : players) {
             sum += player.getScore();
         }
         return sum;
@@ -99,26 +77,19 @@ public class FootballTeam {
 
         FootballTeam that = (FootballTeam) o;
 
-        if (players != null ? !players.equals(that.players) : that.players != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return coach != null ? coach.equals(that.coach) : that.coach == null;
+        return players != null ? players.equals(that.players) : that.players == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = players != null ? players.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (coach != null ? coach.hashCode() : 0);
-        return result;
+        return players != null ? players.hashCode() : 0;
     }
 
     @Override
     public String toString() {
         return "FootballTeam{" +
                 "players=" + players +
-                ", name='" + name + '\'' +
-                ", coach=" + coach +
                 '}';
     }
 }

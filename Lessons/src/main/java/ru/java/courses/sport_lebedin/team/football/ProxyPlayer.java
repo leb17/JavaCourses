@@ -4,29 +4,20 @@ import ru.java.courses.sport_lebedin.team.Athlete;
 
 public class ProxyPlayer extends Athlete implements ScoringPlayer{
 
-    private FootballPlayer player;
+    private FootballPlayer player; //объект, который хочу подменить
 
     private PlayerRole role;
-
-    private boolean active;
 
     public ProxyPlayer(String name, PlayerRole role) {
         super(name);
         this.role = role;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public boolean isActive() {
-        return active;
+        this.active = true;
     }
 
     @Override
-    public void score() { //в случае если игрок окажется вратарём, то создаётся другой
-        if (player.getRole() == PlayerRole.GOALKEEPER) {
-            player = new FootballPlayer("",role);
+    public void score() {
+        if (player == null) {
+            player = new FootballPlayer("proxy", role);
         }
             goals++;
     }
