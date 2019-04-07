@@ -1,6 +1,7 @@
 package ru.java.courses.sport_lebedin.team.football;
 
 import ru.java.courses.sport_lebedin.team.Athlete;
+import ru.java.courses.sport_lebedin.team.ScoringPlayer;
 
 public class FootballPlayer extends Athlete implements ScoringPlayer {
 

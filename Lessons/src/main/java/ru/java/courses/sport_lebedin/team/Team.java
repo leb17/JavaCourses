@@ -2,7 +2,8 @@ package ru.java.courses.sport_lebedin.team;
 
 import ru.java.courses.sport_lebedin.team.football.Coach;
 
-public class Team {
+public abstract class Team<T extends Athlete> {
+
     private String name;
 
     private Coach coach;
@@ -10,6 +11,8 @@ public class Team {
     public Team(String name) {
         setName(name);
     }
+
+    public abstract int getMaxPlayersCount();
 
     public String getName() {
         return name;

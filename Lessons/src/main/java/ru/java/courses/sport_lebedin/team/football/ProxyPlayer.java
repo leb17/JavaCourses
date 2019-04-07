@@ -1,8 +1,9 @@
 package ru.java.courses.sport_lebedin.team.football;
 
 import ru.java.courses.sport_lebedin.team.Athlete;
+import ru.java.courses.sport_lebedin.team.ScoringPlayer;
 
-public class ProxyPlayer extends Athlete implements ScoringPlayer{
+public class ProxyPlayer extends Athlete implements ScoringPlayer {
 
     private FootballPlayer player; //объект, который хочу подменить
 
