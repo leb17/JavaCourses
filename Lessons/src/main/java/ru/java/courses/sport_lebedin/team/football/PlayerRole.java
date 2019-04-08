@@ -4,7 +4,7 @@ public enum PlayerRole {
 
     GOALKEEPER("Вратарь"),
     DEFENDER("Защитник"),
-    WINGER("Нападающий");
+    WINGER("Нападающий"); //public static final PlayerRole WINGER = new PlayerRole("Нападающий");
 
     protected String name;
 

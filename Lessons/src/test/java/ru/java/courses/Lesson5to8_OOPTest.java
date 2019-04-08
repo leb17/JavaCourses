@@ -16,15 +16,17 @@ import org.junit.jupiter.api.Test;
 //import PlayerRole;
 
 import ru.java.courses.sport_lebedin.team.Athlete;
+import ru.java.courses.sport_lebedin.team.Team;
 import ru.java.courses.sport_lebedin.team.football.Coach;
 import ru.java.courses.sport_lebedin.team.football.FootballPlayer;
 import ru.java.courses.sport_lebedin.team.football.FootballTeam;
 import ru.java.courses.sport_lebedin.team.football.PlayerRole;
+import ru.java.courses.sport_lebedin.team.football.ProxyPlayer;
 
 
 public class Lesson5to8_OOPTest {
 
-    private static FootballTeam team;
+    private static Team team;
 
     @BeforeAll
     public static void setup() {
@@ -37,8 +39,9 @@ public class Lesson5to8_OOPTest {
         FootballPlayer goalkeeper = new FootballPlayer("Алексей Петров", PlayerRole.GOALKEEPER);
         FootballPlayer winger = new FootballPlayer("Сергей Забивалов", PlayerRole.WINGER);
         FootballPlayer defender1 = new FootballPlayer("Николай Башкоймяч", PlayerRole.DEFENDER);
+        ProxyPlayer proxy = new ProxyPlayer("test", PlayerRole.WINGER);
 
-        team.addPlayers(goalkeeper, winger, defender1);
+        team.addPlayers(goalkeeper, winger, defender1, proxy);
 
         FootballPlayer defender2 = new FootballPlayer("Евгений Забейгол", PlayerRole.DEFENDER);
         team.addPlayer(defender2);
@@ -48,6 +51,8 @@ public class Lesson5to8_OOPTest {
         winger.score();
         winger.score();
         winger.score();
+
+        proxy.score();
 
         defender1.score(); // уже не в команде
 
@@ -63,7 +68,7 @@ public class Lesson5to8_OOPTest {
     @Test
     public void playersCountTest() {
         int playersCount = team.getPlayersCount();
-        assertEquals(3, playersCount, "Всего в команде должно быть 3 игрока");
+        assertEquals(4, playersCount, "Всего в команде должно быть 3 игрока");
     }
 
     @Test

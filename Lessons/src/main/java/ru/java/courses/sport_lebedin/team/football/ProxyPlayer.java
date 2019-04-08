@@ -5,7 +5,7 @@ import ru.java.courses.sport_lebedin.team.ScoringPlayer;
 
 public class ProxyPlayer extends Athlete implements ScoringPlayer {
 
-    private FootballPlayer player; //объект, который хочу подменить
+    //private FootballPlayer player;
 
     private PlayerRole role;
 
@@ -17,9 +17,7 @@ public class ProxyPlayer extends Athlete implements ScoringPlayer {
 
     @Override
     public void score() {
-        if (player == null) {
-            player = new FootballPlayer("proxy", role);
-        }
-            goals++;
+        FootballPlayer player = new FootballPlayer(getName(), role);
+        player.score();
     }
 }
