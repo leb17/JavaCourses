@@ -22,9 +22,8 @@ public class Lesson10_CollectionsLists {
     public static List<String> task1(List<Integer> source) {
         Collections.sort(source);
         List<String> strings = new ArrayList<>();
-        Iterator<Integer> itr = source.iterator();
-        while (itr.hasNext()) {
-            String t = itr.next().toString();
+        for (Integer integer : source) {
+            String t = integer.toString();
             if (!strings.contains(t)) {
                 strings.add(t);
             }
