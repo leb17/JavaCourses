@@ -18,7 +18,7 @@ public class WorkingWithFiles {
     private static final Logger LOG = LoggerFactory.getLogger(WorkingWithFiles.class);
 
     public static void copy() {
-        File inputFile = new File("files/iwnput.txt");
+        File inputFile = new File("files/input.txt");
         File outputFile = new File("files/output.txt");
         final int buffSize = 1024;
 
