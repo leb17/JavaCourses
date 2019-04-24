@@ -17,10 +17,10 @@ import javax.swing.tree.TreeCellEditor;
 
 public class Lesson11to12_SetMap {
 
-    public static class User {
+    public static class User implements Comparable<User> {
 
         private String name;
-        private int age;
+        private Integer age;
         private String phone;
 
         public User(String name, int age) {
@@ -55,6 +55,33 @@ public class Lesson11to12_SetMap {
         public void setPhone(String phone) {
             this.phone = phone;
         }
+
+        @Override
+        public int compareTo(User o) {
+            if (this.name.compareTo(o.name) == 0) {
+                return this.age.compareTo(o.age);
+            }
+            return this.name.compareTo(o.name);
+        }
+
+        @Override
+        public String toString() {
+            return "User{" +
+                    "name='" + name + '\'' +
+                    ", age=" + age +
+                    ", phone='" + phone + '\'' +
+                    '}';
+        }
+
+        @Override
+        public int hashCode() {
+            return super.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return super.equals(obj);
+        }
     }
 
     /**
@@ -65,10 +92,9 @@ public class Lesson11to12_SetMap {
      * 4. Возвращаем последнего пользователя
      */
     public static User task1(Collection<User> source) {
-        // свой код нужно писать тут
-        // следующую строку можно удалять
 
-        return null;
+        TreeSet<User> set = new TreeSet<>(source); // без дубликатов и отсортировано по алфавиту через Comparable
+        return set.last();
     }
 
     /**
@@ -79,10 +105,12 @@ public class Lesson11to12_SetMap {
      * 4. Вернуть количество записей в справочнике
      */
     public static int task2(Collection<User> source) {
-        // свой код нужно писать тут
-        // следующую строку можно удалять
 
-       return 0;
+        Map<String, String> map = new HashMap<>();
+        for (User user : source) {
+            map.put(user.phone, user.toString());
+        }
+        return map.size();
     }
 
 
@@ -94,13 +122,39 @@ public class Lesson11to12_SetMap {
      * 4. Количество полок константное - 5 штук
      * 5. Вернуть книги распределенные по полкам
      *
-     * Нумерация полок начинается с нуля!
+     * 5 полок - ключи, названия книг - значение
+     *
+     * Нумерация полок начинается с 1
      */
     public static Map task3(Collection<String> source) {
-        // свой код нужно писать тут
-        // следующую строку можно удалять
 
-        return null;
+        //Set<String> set = new HashSet<>(5);
+        //set.addAll(source);
+
+        //TreeSet<String> treeSet = new TreeSet<>(source);
+        int each = source.size() / 5;
+
+        ArrayList<String> list = new ArrayList<>(source);
+        Collections.sort(list);
+
+        HashMap<Integer, List<String>> map = new HashMap<>();
+        //TreeMap<Integer, List<String>> map = new TreeMap<>();
+        /*for (String s : source) {
+            map.put(s.hashCode() % 5, );
+        }*/
+        //map.put(0, set);
+        int j = 0;
+        for (int i = 1; i < 6; i++) {
+            map.put(i, list.subList(j, Math.min(j + each, list.size())));
+            j += each;
+        }
+        /*for (String str : source) {
+            int i = str.hashCode() % 5;
+
+            map.put(i, str);
+        }
+        */
+        return map;
     }
 
 
@@ -110,8 +164,10 @@ public class Lesson11to12_SetMap {
      * 5. Вернуть справочник [название книги -> номер полки]
      */
     public static Map task4(Map<Integer, String> source) {
-        // свой код нужно писать тут
-        // следующую строку можно удалять
-        return null;
+        Map<String, Integer> map = new HashMap<>();
+        for (Entry<Integer, String> entry : source.entrySet()) {
+            map.put(entry.getValue(),entry.getKey());
+        }
+        return map;
     }
 }

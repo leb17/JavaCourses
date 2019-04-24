@@ -61,8 +61,8 @@ public class Lesson11to12_SetMapTest {
         Map<Integer, List<String>> result = Lesson11to12_SetMap.task3(books);
 
         Assertions.assertEquals("Гуси-лебеди", result.get(2).get(1), "Гуси-лебеди д.б. первой книгой на второй полке");
-        Assertions.assertEquals("Код да Винчи", result.get(3).get(2), "Гуси-лебеди д.б. второй книгой на третьей полке");
-        Assertions.assertEquals("Аэлита", result.get(1).get(1), "Гуси-лебеди д.б. первой книгой на первой полке");
+        Assertions.assertEquals("Код да Винчи", result.get(3).get(2), "Код да Винчи д.б. второй книгой на третьей полке");
+        Assertions.assertEquals("Аэлита", result.get(1).get(1), "Аэлита д.б. первой книгой на первой полке");
     }
 
 
