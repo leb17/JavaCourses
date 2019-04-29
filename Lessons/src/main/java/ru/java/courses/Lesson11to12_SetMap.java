@@ -124,7 +124,7 @@ public class Lesson11to12_SetMap {
      *
      * 5 полок - ключи, названия книг - значение
      *
-     * Нумерация полок начинается с 1
+     * Нумерация полок начинается с единицы!
      */
     public static Map task3(Collection<String> source) {
 
