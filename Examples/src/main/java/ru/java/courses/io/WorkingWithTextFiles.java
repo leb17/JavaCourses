@@ -52,12 +52,12 @@ public class WorkingWithTextFiles {
 
             char[] buf = new char[buffSize];
             int off = 0;
-            int count = 0;
+            //int count = 0;
 
             while (-1 != br.read(buf)) {
                 bw.write(buf, off, buf.length);
                 off += buf.length;
-                count++;
+                //count++;
             }
 
             bw.flush();
