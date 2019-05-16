@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 
 public class HttpDemo {
 
-    public static class ResponseData {
+    public static class ResponseData { //класс куда кладутся данные, полученные в ответе
 
         public String url, body;
         public int status;
@@ -53,13 +53,15 @@ public class HttpDemo {
         LOG.info(responseData.toString());
     }
 
+    // метод, в котором выполняется HTTP запрос
     private static ResponseData doRequest(String url, Map<String, String> parameters, Map<String, String> headers) {
         HttpURLConnection connection = null;
         try {
-            URL requestUrl = new URL(url);
-            connection = (HttpURLConnection) requestUrl.openConnection();
+            URL requestUrl = new URL(url); //конструктор из всего url как строки
+            connection = (HttpURLConnection) requestUrl.openConnection(); //подключаемся к серверу
             connection.setRequestMethod("GET");
 
+            //прицепляем параметры к url
             if (parameters != null) {
                 connection.setDoOutput(true);
                 try (DataOutputStream out = new DataOutputStream(connection.getOutputStream())) {
@@ -70,27 +72,29 @@ public class HttpDemo {
 
             if (headers != null) {
                 for (Entry<String, String> header : parameters.entrySet()) {
-                    connection.setRequestProperty(header.getKey(), header.getValue());
+                    connection.setRequestProperty(header.getKey(), header.getValue()); // метод добавляет заголовки в запрос
                 }
             }
 
+            //технические параметры запроса
             connection.setConnectTimeout(5000);
             connection.setReadTimeout(5000);
 
-            int status = connection.getResponseCode();
+            int status = connection.getResponseCode(); //выполнение запроса
 
             ResponseData response = new ResponseData();
             response.status = status;
+            response.url = url;
             response.headers = connection.getHeaderFields();
 
             try (
                     InputStreamReader streamReader = status >= 300 ?
-                            new InputStreamReader(connection.getErrorStream()) :
+                            new InputStreamReader(connection.getErrorStream()) : //метод для получения данных об ошибке
                             new InputStreamReader(connection.getInputStream());
                     BufferedReader responseReader = new BufferedReader(streamReader);
             ) {
                 String inputLine;
-                StringBuilder body = new StringBuilder();
+                StringBuilder body = new StringBuilder(); //собираем строки по одной
                 while ((inputLine = responseReader.readLine()) != null) {
                     body.append(inputLine);
                 }
@@ -101,7 +105,7 @@ public class HttpDemo {
             LOG.error("Error while HTTP request. URL: " + url, e);
         } finally {
             if (connection != null) {
-                connection.disconnect();
+                connection.disconnect(); // закрываем connection
             }
         }
         return null;
@@ -111,14 +115,14 @@ public class HttpDemo {
         StringBuilder result = new StringBuilder();
 
         for (Map.Entry<String, String> entry : params.entrySet()) {
-            result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+            result.append(URLEncoder.encode(entry.getKey(), "UTF-8")); //класс URLEncoder кодирует передаваемые параметры
             result.append("=");
             result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
             result.append("&");
         }
 
         String resultString = result.toString();
-        return resultString.isEmpty() ? resultString : resultString.substring(0, resultString.length() - 1);
+        return resultString.isEmpty() ? resultString : resultString.substring(0, resultString.length() - 1); //удаление ненужного & в конце
     }
 
 }
