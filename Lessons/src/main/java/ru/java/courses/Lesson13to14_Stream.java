@@ -1,12 +1,6 @@
 package ru.java.courses;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
@@ -107,6 +101,8 @@ public class Lesson13to14_Stream {
                 .distinct()                           //убираем дубли
                 //.sorted(Comparator.naturalOrder())  //сортировка по алфавиту
                 //.filter((source) -> source != null) //убрать null
+                //.filter(Objects::nonNull)           //убрать null
+                //.peek(System.out::println)          //взять каждый объект и вывести в консоль
                 //.skip(source.size() - 1)            //пропустить [размер списка - 1] первых элементов
                 .max(Comparator.naturalOrder())       //сортировка по алфавиту и взять последний (min - первый)
                 //.limit(n)                           //взять n элементов
@@ -170,6 +166,7 @@ public class Lesson13to14_Stream {
         int each = source.size() / 5;
         HashMap<Integer, List<String>> map = source.stream()
                 .sorted(Comparator.naturalOrder())
+                //.map((source) -> source.length())     //преобразует stream в другой stream
                 .collect(Collectors.toMap());
 
         return map;
@@ -182,10 +179,12 @@ public class Lesson13to14_Stream {
      * 5. Вернуть справочник [название книги -> номер полки]
      */
     public static Map task4(Map<Integer, String> source) {
-        Map<String, Integer> map = new HashMap<>();
+        /*Map<String, Integer> map = new HashMap<>();
         for (Entry<Integer, String> entry : source.entrySet()) {
             map.put(entry.getValue(),entry.getKey());
         }
-        return map;
+        return map;*/
+
+
     }
 }
