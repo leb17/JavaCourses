@@ -1,7 +1,14 @@
 package ru.java.courses;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 public class Lesson13to14_Stream {
 
@@ -45,6 +52,27 @@ public class Lesson13to14_Stream {
         }
 
         @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            User user = (User) o;
+
+            if (name != null ? !name.equals(user.name) : user.name != null) return false;
+            if (age != null ? !age.equals(user.age) : user.age != null) return false;
+            return phone != null ? phone.equals(user.phone) : user.phone == null;
+
+        }
+
+        @Override
+        public int hashCode() {
+            int result = name != null ? name.hashCode() : 0;
+            result = 31 * result + (age != null ? age.hashCode() : 0);
+            result = 31 * result + (phone != null ? phone.hashCode() : 0);
+            return result;
+        }
+
+        @Override
         public int compareTo(User o) {
             if (this.name.compareTo(o.name) == 0) {
                 return this.age.compareTo(o.age);
@@ -61,15 +89,6 @@ public class Lesson13to14_Stream {
                     '}';
         }
 
-        @Override
-        public int hashCode() {
-            return super.hashCode();
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            return super.equals(obj);
-        }
     }
 
     /**
@@ -81,8 +100,19 @@ public class Lesson13to14_Stream {
      */
     public static User task1(Collection<User> source) {
 
-        TreeSet<User> set = new TreeSet<>(source); // без дубликатов и отсортировано по алфавиту через Comparable
-        return set.last();
+        /*TreeSet<User> set = new TreeSet<>(source); // без дубликатов и отсортировано по алфавиту через Comparable
+        return set.last();*/
+
+        User last = source.stream()
+                .distinct()                           //убираем дубли
+                //.sorted(Comparator.naturalOrder())  //сортировка по алфавиту
+                //.filter((source) -> source != null) //убрать null
+                //.skip(source.size() - 1)            //пропустить [размер списка - 1] первых элементов
+                .max(Comparator.naturalOrder())       //сортировка по алфавиту и взять последний (min - первый)
+                //.limit(n)                           //взять n элементов
+                //.count                              //вернуть кол-во элементов
+                .get();
+        return last;
     }
 
     /**
@@ -94,10 +124,16 @@ public class Lesson13to14_Stream {
      */
     public static int task2(Collection<User> source) {
 
-        Map<String, String> map = new HashMap<>();
+        /*Map<String, String> map = new HashMap<>();
         for (User user : source) {
             map.put(user.phone, user.toString());
         }
+        return map.size();*/
+
+        Map<String, String> map = source.stream()
+                .distinct()
+                //.filter((user) -> user.getPhone().)
+                .collect(Collectors.toMap(p -> p.getPhone(), user -> user.toString()));
         return map.size();
     }
 
@@ -116,32 +152,26 @@ public class Lesson13to14_Stream {
      */
     public static Map task3(Collection<String> source) {
 
-        //Set<String> set = new HashSet<>(5);
-        //set.addAll(source);
-
-        //TreeSet<String> treeSet = new TreeSet<>(source);
-        int each = source.size() / 5;
+        /*int each = source.size() / 5;
 
         ArrayList<String> list = new ArrayList<>(source);
         Collections.sort(list);
 
         HashMap<Integer, List<String>> map = new HashMap<>();
-        //TreeMap<Integer, List<String>> map = new TreeMap<>();
-        /*for (String s : source) {
-            map.put(s.hashCode() % 5, );
-        }*/
-        //map.put(0, set);
+
         int j = 0;
         for (int i = 1; i < 6; i++) {
             map.put(i, list.subList(j, Math.min(j + each, list.size())));
             j += each;
         }
-        /*for (String str : source) {
-            int i = str.hashCode() % 5;
 
-            map.put(i, str);
-        }
-        */
+        return map;*/
+
+        int each = source.size() / 5;
+        HashMap<Integer, List<String>> map = source.stream()
+                .sorted(Comparator.naturalOrder())
+                .collect(Collectors.toMap());
+
         return map;
     }
 
