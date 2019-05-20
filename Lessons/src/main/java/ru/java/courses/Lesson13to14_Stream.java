@@ -159,17 +159,32 @@ public class Lesson13to14_Stream {
         for (int i = 1; i < 6; i++) {
             map.put(i, list.subList(j, Math.min(j + each, list.size())));
             j += each;
+        }*/
+        ArrayList<String> list = new ArrayList<>(source);
+        Collections.sort(list);
+        HashMap<Integer, List<String>> map = new HashMap<>();
+        for (int i = 1; i < list.size(); i++) {
+            map.put(list.indexOf(list[i]) % list.size(), );
         }
 
-        return map;*/
+        //int each = source.size() / 5;
 
-        int each = source.size() / 5;
-        HashMap<Integer, List<String>> map = source.stream()
-                .sorted(Comparator.naturalOrder())
+        //ArrayList<String> list = new ArrayList<>(source);
+        //Collections.sort(list);
+
+        /*list.stream()
+                .takeWhile()
+                .forEach();*/
+
+        Map<Integer, List<String>> map = source.stream()
+                //.sorted(Comparator.naturalOrder())
+                //.iterate(1, x -> x < 6, x -> x + 1)
+
+                //.forEach()
                 //.map((source) -> source.length())     //преобразует stream в другой stream
                 .collect(Collectors.toMap());
 
-        return map;
+        return null;
     }
 
 
@@ -184,7 +199,8 @@ public class Lesson13to14_Stream {
             map.put(entry.getValue(),entry.getKey());
         }
         return map;*/
-
+        return source.entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
 
     }
 }
